@@ -16,6 +16,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error as mse
 from math import sqrt
 
+
 st.markdown(
     """
     <style>
@@ -29,6 +30,7 @@ st.markdown(
 )
 
 st.title('Solar Radiation Prediction')
+
 
 st.write("""
 These datasets are meteorological data from the HI-SEAS weather station from four months (September through December 2016) between Mission IV and Mission V.
@@ -62,14 +64,15 @@ if st.checkbox('Show Intercorrelation Heatmap'):
 		ax = sns.heatmap(corr, mask=mask, vmax=1)
 	st.pyplot(f)
 
+# Sidebar Parameters
 st.sidebar.subheader('Input Parameters')
-#Sidebar Parameters
 params = {'Temperature' : st.sidebar.slider('Temperature (Fahrenheit)', 34, 71, 51),
           'Pressure' : st.sidebar.slider('Barometric Pressure (Hg)', 30.19, 30.56, 30.42),
 	      'Humidity' : st.sidebar.slider('Humidity (percent)', 8, 103, 75),
 	      'WindDirection(Degrees)' : st.sidebar.slider('Wind Direction (degrees)', 0.09, 359.95, 143.49),
 	      'Speed' : st.sidebar.slider('Speed (mph)', 0.00, 40.50, 6.24)}
 
+# Assigning User Parameters
 def user_parameters(df):
 	df = df[df['Temperature']==params['Temperature']]
 	df = df[df['Pressure']==params['Pressure']]
@@ -81,6 +84,7 @@ def user_parameters(df):
 
 test_size = st.sidebar.slider('Pick Test Size', 0.05, 0.5, 0.25, step=0.05)
 
+# Model and ML Algorithms
 @st.cache
 def get_models():
 	y = df['Radiation']
@@ -129,6 +133,7 @@ if btn:
 else:
 	pass
 
+# Additional Functions
 st.sidebar.subheader('Additional Functions')
 
 if st.sidebar.checkbox('Show Raw Data'):
