@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error as mse
 from math import sqrt
 
-
+# Background
 st.markdown(
     """
     <style>
@@ -31,7 +31,7 @@ st.markdown(
 
 st.title('Solar Radiation Prediction')
 
-
+# Body
 st.write("""
 These datasets are meteorological data from the HI-SEAS weather station from four months (September through December 2016) between Mission IV and Mission V.
 
@@ -42,6 +42,7 @@ After choosing your parameters, click on "Predict" and wait until the result is 
 Then you will be able to see further details including ML Models, Predicted Values and Raw Data by selecting the optional functions.
    """)
 
+# Loading CSV and dropping irrelevant columns
 @st.cache
 def load_data():
 	df = pd.read_csv('https://raw.githubusercontent.com/IvanHanonoCozzetti/Solar-Radiation-Prediction-App/main/solar_prediction.csv')
